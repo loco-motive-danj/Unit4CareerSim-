@@ -53,19 +53,5 @@ router.post("/login", async (req, res,next)=>{
     }
 });
 
-router.get("/me", async (req, res,next)=>{
-    if(!req.user){
-        return res.send({})
-    }
-    try{
-        const user = await prisma.user.findUnique({
-            where: {id: req.user.id}
-        })
-
-        res.send(user)
-    }catch(err){
-        next(err)
-    }
-})
 
 module.exports= router;
